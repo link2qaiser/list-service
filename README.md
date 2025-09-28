@@ -68,6 +68,24 @@ This separation allows for:
 - Node.js and npm (for Serverless Framework)
 - Python 3.9+ (for local API development)
 
+### AWS Profile Setup
+
+First, configure your AWS credentials and profile:
+
+```bash
+# Configure AWS CLI with your credentials
+aws configure
+
+# Or if you want to use a specific profile
+aws configure --profile your-profile-name
+
+# Set the profile as default (optional)
+export AWS_PROFILE=your-profile-name
+
+# Verify your configuration
+aws sts get-caller-identity
+```
+
 ### Quick Commands (using Makefile)
 
 **Note:** You can create a local virtual environment before running commands.
@@ -149,6 +167,7 @@ Run `make help` or `make` to see all available commands:
 ## Documentation
 
 - [TERRAFORM_INFRASTRUCTURE.md](TERRAFORM_INFRASTRUCTURE.md) - Infrastructure management
+- [SERVERLESS_DEPLOYMENT.md](SERVERLESS_DEPLOYMENT.md) - Code deployment details
 
 ## License
 
