@@ -167,7 +167,6 @@ Run `make help` or `make` to see all available commands:
 ## Documentation
 
 - [TERRAFORM_INFRASTRUCTURE.md](TERRAFORM_INFRASTRUCTURE.md) - Infrastructure management
-- [SERVERLESS_DEPLOYMENT.md](SERVERLESS_DEPLOYMENT.md) - Code deployment details
 
 ## License
 
