@@ -1,0 +1,50 @@
+name: CI/CD - FastAPI AWS Lambda
+
+on:
+  push:
+    branches:
+      - dev
+      - stage
+      - prod
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r app/requirements.txt
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Dummy Deploy Step
+        run: |
+          echo "Current Branch: ${{ github.ref }}"
+          if [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
+            echo "✅ Dev environment: Skipping real deployment"
+          elif [[ "${{ github.ref }}" == "refs/heads/stage" ]]; then
+            echo "🧪 Stage environment: Skipping real deployment"
+          elif [[ "${{ github.ref }}" == "refs/heads/prod" ]]; then
+            echo "🚀 Prod environment: Skipping real deployment"
+          else
+            echo "❓ Unknown branch, no deployment"
+          fi
